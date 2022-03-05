@@ -5,6 +5,6 @@ FROM(
 		SELECT company, fiscal_year, 
        	fiscal_year - ROW_NUMBER() OVER (PARTITION BY company ORDER BY fiscal_year) grp_date
 		FROM dividend
-		) A
+		) a
 GROUP BY company, end_year
 HAVING COUNT(*) > 2) b;
